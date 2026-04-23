@@ -205,6 +205,52 @@
             color: var(--accent);
             transform: scale(1.1);
         }
+        /* Container bao quanh video */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Đẩy video ra sau cùng */
+            pointer-events: none; /* Để người dùng có thể click xuyên qua video vào nút/link */
+            overflow: hidden;
+        }
+        
+        /* Kỹ thuật để video luôn phủ kín (Cover) màn hình */
+        .video-background iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 100vh;
+            transform: translate(-50%, -50%);
+        }
+        
+        /* Nếu màn hình rộng (PC), tăng kích thước video để tránh viền đen */
+        @media (min-aspect-ratio: 16/9) {
+            .video-background iframe {
+                height: 56.25vw; /* 100 * 9 / 16 */
+            }
+        }
+        
+        /* Nếu màn hình hẹp (Mobile), tăng chiều rộng video */
+        @media (max-aspect-ratio: 16/9) {
+            .video-background iframe {
+                width: 177.78vh; /* 100 * 16 / 9 */
+            }
+        }
+        
+        /* Thêm một lớp phủ tối để chữ dễ đọc hơn trên nền video */
+        .video-background::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 25, 47, 0.5); /* Màu xanh đen mờ */
+        }
 
         /* --- Responsive --- */
         @media (max-width: 900px) {
@@ -273,4 +319,12 @@
     </div>
 
 </body>
+    <div class="video-background">
+    <iframe 
+        src="https://www.youtube.com/embed/D3_vV4X0Nto?autoplay=1&mute=1&loop=1&playlist=D3_vV4X0Nto&controls=0&showinfo=0&rel=0&iv_load_policy=3" 
+        frameborder="0" 
+        allow="autoplay; encrypted-media" 
+        allowfullscreen>
+    </iframe>
+</div>
 </html>
