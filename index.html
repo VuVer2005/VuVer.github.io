@@ -8,258 +8,152 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <style>
-        :root {
-            /* Palette màu Đại Dương Lạnh */
-            --bg-body: #0a192f;        /* Xanh sapphire rất đậm (nền tối) */
-            --bg-overlay: rgba(10, 25, 41, 0.7); /* Lớp phủ bán trong suốt cho thẻ thông tin */
-            --text-main: #f1f8fc;     /* Trắng hơi xanh nhạt (văn bản chính) */
-            --text-sub: #b1e4f3;       /* Xanh sapphire nhạt (văn bản phụ) */
-            --accent: #a8dadc;         /* Xanh ngọc (điểm nhấn tiêu đề, icon) */
-            --accent-dark: #7ac1c4;     /* Xanh ngọc đậm hơn (điểm nhấn tối) */
-            --border-card: rgba(168, 218, 220, 0.2); /* Viền mờ màu điểm nhấn */
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            --transition: all 0.3s ease;
-        }
+    :root {
+    /* Palette màu mới hợp với nền rừng hoa */
+    --bg-overlay: rgba(15, 23, 42, 0.3); /* Giảm độ đậm để nền rõ hơn */
+    --glass-bg: rgba(255, 255, 255, 0.05); /* Hiệu ứng kính mờ */
+    --text-main: #ffffff;
+    --text-sub: #e2e8f0;
+    --accent: #ffb7c5; /* Màu hồng hoa anh đào nhạt */
+    --accent-glow: #00ffcc; /* Màu xanh lục bảo của các đốm sáng trong rừng */
+    --border-glass: rgba(255, 255, 255, 0.1);
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* --- NỀN CỐ ĐỊNH: ĐI XUYÊN SUỐT --- */
-        body {
-            font-family: 'Lato', sans-serif;
-            color: var(--text-main);
-            background-image: url('https://images8.alphacoders.com/886/thumb-1920-886211.jpg'); /* Thay liên kết ảnh nền ở bước 2 */
-            background-attachment: fixed; /* Cố định nền khi cuộn */
-            background-size: cover;       /* Bao phủ toàn bộ vùng xem */
-            background-position: center;  /* Giữ hình ảnh ở trung tâm */
-            background-repeat: no-repeat;
-            line-height: 1.6;
-        }
+body {
+    font-family: 'Lato', sans-serif;
+    color: var(--text-main);
+    background-color: #0f172a; /* Fallback color */
+    line-height: 1.6;
+}
 
-        /* Phông chữ tiêu đề */
-        h1, h2, h3, h4 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            color: var(--accent);
-            letter-spacing: -0.5px;
-        }
+/* Container cho video background */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            position: relative;
-            z-index: 1; /* Giữ nội dung ở trên nền */
-        }
+.video-background iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
 
-        /* --- Header: Tên và Tagline --- */
-        header {
-            text-align: center;
-            padding: 5rem 0 3rem;
-            margin-bottom: 3rem;
-        }
+/* LỚP PHỦ QUAN TRỌNG: Làm mỏng lại để thấy nền rõ hơn */
+.video-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(15,23,42,0.4) 100%);
+}
 
-        h1.name {
-            font-size: 3.5rem;
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-        }
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
 
-        .tagline {
-            font-size: 1.5rem;
-            color: var(--text-sub);
-            font-weight: 700;
-            opacity: 0.9;
-        }
+header {
+    text-align: center;
+    padding: 8rem 0 4rem;
+}
 
-        /* --- Phong cách các Section: Thẻ thông tin --- */
-        section {
-            background: var(--bg-overlay); /* Lớp phủ bán trong suốt */
-            padding: 3rem 2rem;
-            border-radius: 12px;
-            margin-bottom: 3rem;
-            border: 1px solid var(--border-card); /* Viền mờ màu sapphire */
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
+h1.name {
+    font-size: 4rem;
+    font-weight: 800;
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(255, 183, 197, 0.5); /* Đổ bóng hồng nhẹ */
+    margin-bottom: 1rem;
+}
 
-        section:hover {
-            border-color: var(--accent);
-            box-shadow: 0 6px 16px rgba(168, 218, 220, 0.4);
-        }
+.tagline {
+    font-size: 1.2rem;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
 
-        h2.section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 2.5rem;
-            border-bottom: 3px solid var(--accent);
-            padding-bottom: 1rem;
-            display: inline-block;
-            margin-left: auto;
-            margin-right: auto;
-        }
+/* SECTION GLASSMORPHISM: Hiệu ứng kính xuyên thấu */
+section {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px); /* Làm mờ nhẹ nền phía sau khung */
+    -webkit-backdrop-filter: blur(10px);
+    padding: 3rem;
+    border-radius: 24px;
+    margin-bottom: 3rem;
+    border: 1px solid var(--border-glass);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
+}
 
-        /* --- Giới thiệu --- */
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
+section:hover {
+    border-color: var(--accent-glow);
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.08);
+}
 
-        .about-text p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-        }
+h2.section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--accent-glow); /* Xanh lục bảo cho tiêu đề */
+    display: inline-block;
+    position: relative;
+}
 
-        /* --- Kỹ năng --- */
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            justify-content: center;
-        }
+h2.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 3px;
+    background: var(--accent-glow);
+}
 
-        .skill-tag {
-            background: rgba(168, 218, 220, 0.1); /* Nền sapphire nhạt */
-            color: var(--accent);
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-            border: 1px solid rgba(168, 218, 220, 0.3);
-            transition: var(--transition);
-        }
+/* Kỹ năng và Dự án */
+.skill-tag {
+    background: rgba(0, 255, 204, 0.1);
+    color: var(--accent-glow);
+    border: 1px solid rgba(0, 255, 204, 0.3);
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: 0.3s;
+}
 
-        .skill-tag:hover {
-            background: var(--accent);
-            color: var(--bg-body);
-            transform: translateY(-5px);
-        }
+.skill-tag:hover {
+    background: var(--accent-glow);
+    color: #000;
+    box-shadow: 0 0 15px var(--accent-glow);
+}
 
-        /* --- Dự án --- */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: rgba(16, 21, 28, 0.8); /* Nền thẻ dự án tối hơn */
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-card);
-            transition: var(--transition);
-        }
-
-        .project-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .project-tech {
-            font-size: 0.9rem;
-            color: var(--text-sub);
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        .project-desc {
-            font-size: 1rem;
-            color: var(--text-main);
-        }
-
-        /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding: 4rem 0;
-            border-top: 1px solid var(--border-card);
-            margin-top: 3rem;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 2.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .contact-link {
-            font-size: 2rem;
-            color: var(--text-sub);
-            transition: var(--transition);
-        }
-
-        .contact-link:hover {
-            color: var(--accent);
-            transform: scale(1.1);
-        }
-        /* Container bao quanh video */
-        .video-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Đẩy video ra sau cùng */
-            pointer-events: none; /* Để người dùng có thể click xuyên qua video vào nút/link */
-            overflow: hidden;
-        }
-        
-        /* Kỹ thuật để video luôn phủ kín (Cover) màn hình */
-        .video-background iframe {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100vw;
-            height: 100vh;
-            transform: translate(-50%, -50%);
-        }
-        
-        /* Nếu màn hình rộng (PC), tăng kích thước video để tránh viền đen */
-        @media (min-aspect-ratio: 16/9) {
-            .video-background iframe {
-                height: 56.25vw; /* 100 * 9 / 16 */
-            }
-        }
-        
-        /* Nếu màn hình hẹp (Mobile), tăng chiều rộng video */
-        @media (max-aspect-ratio: 16/9) {
-            .video-background iframe {
-                width: 177.78vh; /* 100 * 16 / 9 */
-            }
-        }
-        
-        /* Thêm một lớp phủ tối để chữ dễ đọc hơn trên nền video */
-        .video-background::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 25, 47, 0.5); /* Màu xanh đen mờ */
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 900px) {
-            h1.name { font-size: 2.5rem; }
-            .tagline { font-size: 1.2rem; }
-            .about-content { flex-direction: column; text-align: center; }
-            .skills-list { flex-direction: column; align-items: center; }
-        }
-    </style>
+.project-card {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-glass);
+    padding: 2rem;
+    border-radius: 16px;
+}
 </head>
 <body>
 <div class="video-background">
