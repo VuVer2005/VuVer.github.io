@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Tên Của Bạn] - Portfolio Đại Dương</title>
+    <title>[Tên Của Bạn] - Portfolio Tối Giản</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            /* Palette màu Đại Dương (Lạnh nhưng sống động) */
-            --bg-deep: #0a192f;        /* Xanh dương rất đậm (vùng biển sâu) */
-            --bg-surface: #112240;     /* Xanh dương đậm vừa (bề mặt hơn) */
-            --primary-aqua: #64ffda;   /* Màu xanh ngọc phát sáng (như sinh vật biển) */
-            --text-main: #ccd6f6;      /* Trắng hơi xanh nhạt */
-            --text-sub: #8892b0;       /* Xám xanh nhạt */
-            --transition-smooth: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+            /* Palette tối giản, "chanh sả" */
+            --bg-body: #ffffff;
+            --text-main: #111111;
+            --text-sub: #6f6f6f;
+            --accent: #000000;
+            --bg-secondary: #f5f5f7;
+            --transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
         }
 
         * {
@@ -26,250 +25,146 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-deep);
-            /* Hiệu ứng gradient nền tạo cảm giác độ sâu đại dương */
-            background-image: radial-gradient(circle at center, #1c3d69 0%, #0a192f 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-body);
             color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
-
-        /* Thanh cuộn phong cách đại dương */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-deep); }
-        ::-webkit-scrollbar-thumb { background: #1c3d69; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--primary-aqua); }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 80px 30px;
         }
 
-        /* --- Header & Profile (Màu mè với Gradient) --- */
+        /* --- Header: Tối giản, chỉ có chữ --- */
         header {
-            text-align: center;
-            margin-bottom: 80px;
-            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 120px;
         }
 
-        .profile-wrapper {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 25px;
-        }
-
-        .profile-img {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid transparent;
-            /* Gradient viền ảnh */
-            background-image: linear-gradient(var(--bg-deep), var(--bg-deep)), 
-                              linear-gradient(135deg, var(--primary-aqua) 0%, #48abe0 100%);
-            background-origin: border-box;
-            background-clip: content-box, border-box;
-            box-shadow: 0 10px 30px -10px rgba(2,12,27,0.7);
-            transition: var(--transition-smooth);
-        }
-
-        .profile-wrapper:hover .profile-img {
-            transform: scale(1.05) rotate(5deg);
-            box-shadow: 0 15px 40px -10px var(--primary-aqua);
-        }
-
-        h1 {
-            font-size: 3.5rem;
+        .logo {
             font-weight: 800;
-            margin-bottom: 10px;
-            /* Chữ đổ màu Gradient lung linh */
-            background: linear-gradient(135deg, #ffffff 0%, #a8dadc 50%, var(--primary-aqua) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
-        }
-
-        .tagline {
-            font-size: 1.3rem;
-            color: var(--primary-aqua);
-            font-weight: 500;
-            margin-bottom: 25px;
-            opacity: 0.9;
-        }
-
-        .social-links a {
-            font-size: 1.6rem;
-            color: var(--text-sub);
-            margin: 0 15px;
-            transition: var(--transition-smooth);
+            font-size: 1.5rem;
+            letter-spacing: -1.5px;
+            color: var(--text-main);
             text-decoration: none;
-            display: inline-block;
         }
 
-        .social-links a:hover {
-            color: var(--primary-aqua);
-            transform: translateY(-5px);
-            /* Hiệu ứng phát sáng nhẹ */
-            text-shadow: 0 0 10px var(--primary-aqua);
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-sub);
+            margin-left: 30px;
+            font-size: 0.95rem;
+            transition: var(--transition);
         }
 
-        /* --- Phong cách các Section (Như các hòn đảo) --- */
-        section {
-            background: var(--bg-surface);
-            padding: 40px;
-            border-radius: 20px;
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* --- Hero: Điểm nhấn ảnh nền --- */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 150px;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -3px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 1.5rem;
+            color: var(--text-sub);
             margin-bottom: 40px;
-            /* Đổ bóng sâu tạo khối */
-            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
-            border: 1px solid rgba(100, 255, 218, 0.05); /* Viền mờ màu aqua */
-            transition: var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
+            max-width: 500px;
         }
 
-        section:hover {
-            transform: translateY(-5px);
-            border: 1px solid rgba(100, 255, 218, 0.2);
-            box-shadow: 0 20px 40px -20px rgba(2,12,27,0.9);
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: #ffffff;
+            padding: 16px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
         }
 
-        /* Hiệu ứng trang trí góc section */
-        section::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 4px;
-            background: linear-gradient(90deg, var(--primary-aqua), #48abe0, var(--bg-surface));
-            opacity: 0.5;
+        .btn:hover {
+            transform: scale(1.03);
+            background-color: #333333;
+        }
+
+        /* --- PHẦN SỬ DỤNG ẢNH BẠN GỬI LÀM NỀN --- */
+        .ocean-bg-section {
+            background-image: url('https://via.placeholder.com/1920x1080?text=Thay+link+anh+cua+ban+vào+day');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 30px;
+            aspect-ratio: 16 / 9; /* Giữ tỷ lệ ảnh */
+            margin-bottom: 150px;
+            box-shadow: 0 10px 40px -15px rgba(0,0,0,0.1);
+        }
+
+        /* --- Giới thiệu --- */
+        .about {
+            margin-bottom: 150px;
         }
 
         h2 {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 30px;
-            font-size: 1.8rem;
-            color: #e6f1ff;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            letter-spacing: -1.5px;
         }
 
-        h2 i {
-            color: var(--primary-aqua);
-            font-size: 1.5rem;
-        }
-
-        p {
-            color: var(--text-sub);
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-        }
-
-        /* --- Kỹ năng (Màu mè rực rỡ) --- */
-        .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .skill-tag {
-            background: rgba(100, 255, 218, 0.07); /* Nền aqua trong suốt */
-            color: var(--primary-aqua);
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            border: 1px solid rgba(100, 255, 218, 0.2);
-            transition: var(--transition-smooth);
-            cursor: default;
-        }
-
-        .skill-tag:hover {
-            background: rgba(100, 255, 218, 0.2);
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 5px 15px -5px var(--primary-aqua);
-        }
-
-        /* --- Dự án (Thiết kế Card nổi bật) --- */
-        .projects-container {
+        .about-content {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
         }
 
-        .project-item {
-            background: rgba(10, 25, 47, 0.5); /* Đậm hơn nền section */
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid #1c3d69;
-            transition: var(--transition-smooth);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .project-item:hover {
-            border-color: var(--primary-aqua);
-            background: rgba(10, 25, 47, 0.8);
-        }
-
-        .project-top h3 {
-            margin-bottom: 10px;
-            color: #e6f1ff;
-            font-size: 1.4rem;
-            transition: var(--transition-smooth);
-        }
-
-        .project-item:hover h3 {
-            color: var(--primary-aqua);
-        }
-
-        .project-item p {
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            min-height: 60px;
-        }
-
-        .project-tech {
-            font-family: monospace;
-            font-size: 0.85rem;
-            color: var(--text-sub);
+        .about-item h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
             margin-bottom: 15px;
         }
 
-        .project-link {
-            color: var(--primary-aqua);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .project-link:hover {
-            text-decoration: underline;
+        .about-item p {
+            color: var(--text-sub);
+            font-size: 1.05rem;
         }
 
         /* --- Footer --- */
         footer {
             text-align: center;
-            padding: 40px 0;
-            color: var(--text-sub);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(100, 255, 218, 0.1);
+            padding: 80px 0;
+            border-top: 1px solid #eeeeee;
+            margin-top: 100px;
         }
 
         footer strong {
-            color: var(--primary-aqua);
+            color: var(--accent);
         }
 
-        /* --- Responsive (Cho điện thoại) --- */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .container { padding: 30px 15px; }
-            section { padding: 25px; }
-            .tagline { font-size: 1.1rem; }
+        /* --- Responsive --- */
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; gap: 40px; }
+            .hero-text h1 { font-size: 3rem; }
+            header { flex-direction: column; gap: 20px; text-align: center; }
+            .nav-links a { margin: 0 10px; }
         }
     </style>
 </head>
@@ -277,74 +172,44 @@
 
     <div class="container">
         <header>
-            <div class="profile-wrapper">
-                <img src="https://via.placeholder.com/160" alt="Profile Picture" class="profile-img">
+            <a href="#" class="logo">[TÊN LÀM LOGO]</a>
+            <div class="nav-links">
+                <a href="#about">Về Tôi</a>
+                <a href="https://github.com/your-username" target="_blank">GitHub</a>
+                <a href="mailto:your-email@example.com">Liên Hệ</a>
             </div>
-            <h1>[Tên Của Bạn]</h1>
-            <p class="tagline">Developer / Designer / Ocean Lover</p>
-            <div class="social-links">
-                <a href="https://github.com/your-username" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/your-username" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="mailto:your-email@example.com" title="Email"><i class="fas fa-envelope"></i></a>
-                </div>
         </header>
 
-        <section id="about">
-            <h2><i class="fas fa-water"></i> Khám phá về tôi</h2>
-            <p>Xin chào! Tôi là một người đam mê công nghệ và thích giải quyết các vấn đề thông qua mã code. Như đại dương bao la, thế giới lập trình luôn đầy những điều mới mẻ để khám phá.</p>
-            <p>Hiện tại tôi đang tập trung vào việc xây dựng các ứng dụng web hiện đại, mượt mà và thân thiện với người dùng. Tôi thích sự pha trộn giữa tư duy logic và sự sáng tạo trong thiết kế giao diện.</p>
-        </section>
-
-        <section id="skills">
-            <h2><i class="fas fa-swimmer"></i> Bộ kỹ năng</h2>
-            <div class="skills-grid">
-                <span class="skill-tag">HTML5 / CSS3</span>
-                <span class="skill-tag">JavaScript (ES6+)</span>
-                <span class="skill-tag">React / Next.js</span>
-                <span class="skill-tag">UI/UX Design</span>
-                <span class="skill-tag">Python / Django</span>
-                <span class="skill-tag">Git / GitHub</span>
-                <span class="skill-tag">Tailwind CSS</span>
-                <span class="skill-tag">Node.js</span>
+        <section class="hero">
+            <div class="hero-text">
+                <h1>Developer. Designer. Problem Solver.</h1>
+                <p>Tôi là [Tên Của Bạn], một nhà sáng tạo giải pháp thông qua mã và tư duy thiết kế.</p>
+                <a href="mailto:your-email@example.com" class="btn">Kết nối ngay</a>
             </div>
-        </section>
+            </section>
 
-        <section id="projects">
-            <h2><i class="fas fa-ship"></i> Những chuyến ra khơi (Dự án)</h2>
-            
-            <div class="projects-container">
-                <div class="project-item">
-                    <div class="project-top">
-                        <h3>Dự Án Vực Thẳm</h3>
-                        <p>Một ứng dụng phân tích dữ liệu deep web mạnh mẽ, giúp khám phá các thông tin ẩn.</p>
-                        <p class="project-tech">Python, TensorFlow, React</p>
-                    </div>
-                    <a href="#" class="project-link" target="_blank">Khám phá →</a>
+        <section class="ocean-bg-section"></section>
+
+        <section id="about" class="about">
+            <h2>Khám phá về tôi</h2>
+            <div class="about-content">
+                <div class="about-item">
+                    <h3>Kỹ năng chính</h3>
+                    <p>Tôi tập trung vào việc xây dựng các ứng dụng web tối ưu sử dụng các công nghệ như [Skill 1], [Skill 2], [Skill 3].</p>
                 </div>
-
-                <div class="project-item">
-                    <div class="project-top">
-                        <h3>San Hô UI Kit</h3>
-                        <p>Thư viện component CSS lấp lánh và rực rỡ được lấy cảm hứng từ các rặng san hô.</p>
-                        <p class="project-tech">HTML, SASS, JavaScript</p>
-                    </div>
-                    <a href="#" class="project-link" target="_blank">Khám phá →</a>
+                <div class="about-item">
+                    <h3>Quan điểm thiết kế</h3>
+                    <p>Mục tiêu của tôi luôn là sự tối giản. Mã sạch, thiết kế gọn gàng và trải nghiệm người dùng tuyệt vời.</p>
                 </div>
-
-                <div class="project-item">
-                    <div class="project-top">
-                        <h3>Sóng Thần API</h3>
-                        <p>Hệ thống API xử lý hàng triệu request mỗi giây mà vẫn giữ được sự ổn định.</p>
-                        <p class="project-tech">Go, Redis, Docker</p>
-                    </div>
-                    <a href="#" class="project-link" target="_blank">Khám phá →</a>
+                <div class="about-item">
+                    <h3>Đam mê mới</h3>
+                    <p>Hiện tại tôi đang khám phá thế giới của [AI / Blockchain / Cloud Computing] để mở rộng giới hạn.</p>
                 </div>
             </div>
         </section>
 
         <footer>
-            <p>&copy; 2024. Được thiết kế với <i class="fas fa-heart" style="color: #48abe0;"></i> bởi <strong>[Tên Của Bạn]</strong>.</p>
-            <p style="font-size: 0.8rem; margin-top: 10px;">Lấy cảm hứng từ chiều sâu của đại dương.</p>
+            <p>&copy; 2024. Được xây dựng với sự tối giản bởi <strong>[Tên Của Bạn]</strong>.</p>
         </footer>
     </div>
 
